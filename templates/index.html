@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage Maker - Upload Images</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 class="text-2xl font-bold mb-4">Upload Images for Collage</h1>
+        <form action="/" method="post" enctype="multipart/form-data" class="space-y-4">
+            <div>
+                <label for="files" class="block text-sm font-medium text-gray-700">Upload Images (2-9 images)</label>
+                <input type="file" name="files[]" multiple accept="image/*" class="mt-1 block w-full" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Upload Images</button>
+        </form>
+    </div>
+</body>
+</html>

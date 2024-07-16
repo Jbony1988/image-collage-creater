@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collage Maker - Manage Images</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Manage Images for Collage</h1>
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            {% for image in images %}
+            <div class="relative">
+                <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="{{ image }}" class="w-full h-40 object-cover rounded-lg">
+                <form method="post" class="absolute top-2 right-2">
+                    <input type="hidden" name="delete" value="{{ image }}">
+                    <button type="submit" class="bg-red-500 text-white p-1 rounded-full hover:bg-red-600">X</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        <form action="{{ url_for('manage_images') }}" method="post" class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+                <label for="scale_factor" class="block text-sm font-medium text-gray-700">Scale Factor</label>
+                <input type="number" name="scale_factor" value="2" min="1" max="5" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div class="mb-4">
+                <label for="frame_width" class="block text-sm font-medium text-gray-700">Frame Width</label>
+                <input type="number" name="frame_width" value="80" min="0" max="200" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <button type="submit" name="create_collage" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Create Collage</button>
+        </form>
+        <a href="{{ url_for('index') }}" class="block mt-4 text-center text-blue-500 hover:underline">Upload More Images</a>
+    </div>
+</body>
+</html>
